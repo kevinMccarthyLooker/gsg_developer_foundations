@@ -12,17 +12,12 @@ view: users {
 
   dimension: first_name {
     type: string
-    sql: left(${TABLE}.first_name,1) || '.';;
+    sql: ${TABLE}.first_name;;
   }
 
   dimension: last_name {
     type: string
     sql: ${TABLE}.last_name ;;
-  }
-
-  dimension: full_name {
-    type: string
-    sql: ${first_name} || ' ' || ${last_name} ;;
   }
 
   dimension: email {
@@ -48,13 +43,6 @@ view: users {
     sql: ${age}-15 ;;
   }
 
-  dimension: age_tier {
-    type: tier
-    style: integer
-    tiers: [20,30,40,50,60]
-    sql: ${age} ;;
-  }
-
   dimension: gender {
     group_label: "Demographic Info"
     type: string
@@ -66,13 +54,13 @@ view: users {
 #To do: Add Quarter Created and Day Of Year Created
   dimension_group: created {
     type: time
-    timeframes: [raw,date,month,year,quarter,day_of_year]
+    timeframes: [raw,date,month,year]
     sql: ${TABLE}.created_at ;;
   }
 
 
 
-##### Loction Info #####
+##### Loctaion Info #####
 #To do: Add Location for mapping and state map layer for mapping
 #To do: Add is_domestic yesNo
   dimension: latitude {
@@ -110,11 +98,6 @@ view: users {
     group_label: "Location Info"
     type: string
     sql: ${TABLE}.country ;;
-  }
-
-  dimension: is_domestic {
-    type: yesno
-    sql: ${country}='USA' ;;
   }
 
   dimension: zip {
