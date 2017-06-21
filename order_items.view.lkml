@@ -56,13 +56,9 @@ view: order_items {
 
   # ----- Sets of fields for drilling ------
   set: detail {
-    fields: [
-      id,
-      users.id,
-      inventory_items.id,
-      users.first_name,
-      users.last_name,
-      inventory_items.product_name
-    ]
+    fields: [id, users.id, inventory_items.id, users.first_name, users.last_name, inventory_items.product_name]
   }
+
+# Exercise: Create 'complete' yesNo field off of status and then total_complete_sale_price
+
 }

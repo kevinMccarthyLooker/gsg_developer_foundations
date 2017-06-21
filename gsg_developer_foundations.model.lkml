@@ -16,6 +16,8 @@ explore: inventory_items {
     sql_on: ${inventory_items.product_distribution_center_id} = ${distribution_centers.id} ;;
     relationship: many_to_one
   }
+
+#To do: Add order_items
 }
 
 

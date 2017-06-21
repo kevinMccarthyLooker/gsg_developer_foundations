@@ -3,6 +3,7 @@ view: users {
 
   dimension: id {
     primary_key: yes
+    #hidden: yes
     type: number
     sql: ${TABLE}.id ;;
   }
@@ -37,12 +38,6 @@ view: users {
     sql: ${TABLE}.age ;;
   }
 
-  dimension: year_as_consumer {
-    group_label: "Demographic Info"
-    type: number
-    sql: ${age}-15 ;;
-  }
-
   dimension: gender {
     group_label: "Demographic Info"
     type: string
@@ -58,11 +53,10 @@ view: users {
     sql: ${TABLE}.created_at ;;
   }
 
-
-
 ##### Loctaion Info #####
 #To do: Add Location for mapping and state map layer for mapping
 #To do: Add is_domestic yesNo
+
   dimension: latitude {
     group_label: "Location Info"
     type: number
@@ -122,5 +116,10 @@ view: users {
     type: count
     drill_fields: [id, first_name, last_name, events.count, order_items.count]
   }
+
+
+#Exercise: Add city, state field
+#Exercise: Add age tier with groupings 0-17, 18-64, 65 and above
+
 
 }
