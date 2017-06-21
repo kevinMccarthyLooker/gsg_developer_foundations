@@ -154,7 +154,7 @@ measure: count_domestic {
   }
 
 #Exercise: Add age tier with groupings 0-17, 18-64, 65 and above
-  dimension: age_tier {
+  dimension: age_tier2 {
     type:  tier
     style: integer
     tiers: [18,65]
