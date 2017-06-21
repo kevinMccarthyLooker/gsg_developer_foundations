@@ -39,6 +39,7 @@ view: order_items {
   }
 
   dimension: status {
+    description: "The status of the item"
     type: string
     sql: ${TABLE}.status ;;
   }
@@ -51,6 +52,26 @@ view: order_items {
   measure: count {
     type: count
     drill_fields: [detail*]
+  }
+
+  measure: total_sale_price {
+    type: sum
+    sql: ${sale_price} ;;
+    value_format_name: usd
+  }
+  measure: average_sale_price {
+    type: average
+    sql: ${sale_price} ;;
+    value_format_name: usd
+  }
+  measure: total_domestic_sale_price {
+    type: sum
+    sql: ${sale_price} ;;
+    filters: {
+      field: users.is_domestic
+      value: "yes"
+    }
+    value_format_name: usd
   }
 
 
