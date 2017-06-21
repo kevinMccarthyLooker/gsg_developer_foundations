@@ -13,12 +13,17 @@ view: users {
 
   dimension: first_name {
     type: string
-    sql: ${TABLE}.first_name;;
+    sql: left(${TABLE}.first_name,1);;
   }
 
   dimension: last_name {
     type: string
     sql: ${TABLE}.last_name ;;
+  }
+
+  dimension: full_name  {
+    type: string
+    sql: ${first_name} || ',' || ${last_name} ;;
   }
 
   dimension: email {
@@ -38,6 +43,18 @@ view: users {
     sql: ${TABLE}.age ;;
   }
 
+  dimension: number_of_years_as_a_consumer {
+    type: number
+    sql: ${age}-15 ;;
+  }
+
+  dimension: age_tier {
+    type: tier
+    tiers: [10,20,30,40,50,60,70]
+    style: integer
+    sql: ${age} ;;
+  }
+
   dimension: gender {
     group_label: "Demographic Info"
     type: string
@@ -49,7 +66,7 @@ view: users {
 #To do: Add Quarter Created and Day Of Year Created
   dimension_group: created {
     type: time
-    timeframes: [raw,date,month,year]
+    timeframes: [raw,date,month,year,quarter,day_of_year]
     sql: ${TABLE}.created_at ;;
   }
 
@@ -101,6 +118,11 @@ view: users {
     map_layer_name: us_zipcode_tabulation_areas
   }
 
+  dimension: is_domestic {
+    type: yesno
+    sql: ${country}='USA' ;;
+
+  }
 
 ##### Other Info #####
   dimension: traffic_source {
@@ -117,6 +139,13 @@ view: users {
     drill_fields: [id, first_name, last_name, events.count, order_items.count]
   }
 
+measure: count_domestic {
+  type: count
+  filters: {
+    field: is_domestic
+    value: "yes"
+  }
+}
 
 #Exercise: Add city, state field
 #Exercise: Add age tier with groupings 0-17, 18-64, 65 and above
