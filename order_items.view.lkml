@@ -60,5 +60,15 @@ view: order_items {
   }
 
 # Exercise: Create 'complete' yesNo field off of status and then total_complete_sale_price
+dimension: complete {
+  type: yesno
+  sql: ${status}='Complete';;
+}
 
+measure: total_complete_sale_price {
+  type: number
+  sql: ${complete}='Yes' ;;
+  #value_format_name: usd
+
+}
 }
