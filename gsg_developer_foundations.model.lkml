@@ -9,7 +9,8 @@ include: "*.dashboard"
 
 
 explore: inventory_items {
-  description: "Basic product and inventory information"
+
+  description: "Basic product and inventory information. Please"
 
   join: distribution_centers {
     type: left_outer
