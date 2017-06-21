@@ -119,7 +119,17 @@ view: users {
 
 
 #Exercise: Add city, state field
-#Exercise: Add age tier with groupings 0-17, 18-64, 65 and above
+  dimension: citystate {
+    type: string
+    sql: ${city} || ',' || ${state} ;;
+  }
 
+#Exercise: Add age tier with groupings 0-17, 18-64, 65 and above
+  dimension: age_tier {
+    type:  tier
+    style: integer
+    tiers: [18,65]
+    sql:  ${age} ;;
+  }
 
 }
