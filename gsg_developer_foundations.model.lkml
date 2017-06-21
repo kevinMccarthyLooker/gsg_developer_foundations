@@ -17,7 +17,7 @@ explore: inventory_items {
     relationship: many_to_one
   }
 
-#To do: Add order_items
+#To do: Add order_items to this explore
 }
 
 
